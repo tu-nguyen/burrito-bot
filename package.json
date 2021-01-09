@@ -1,0 +1,18 @@
+{
+  "name": "burrito-bot",
+  "version": "1.0.0",
+  "description": "bot for the burrito-guy server",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tu nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "tmi.js": "^1.7.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
