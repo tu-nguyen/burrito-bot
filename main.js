@@ -10,7 +10,7 @@ const tmiClient = new tmi.Client({
 		username: process.env.TWITCH_USERNAME,
 		password: process.env.TWITCH_PASSWORD
 	},
-	channels: [ 'jt1gaming', 'ascidgaming' ]
+	channels: ['jt1gaming', 'ascidgaming']
 });
 tmiClient.connect().catch(console.error);
 tmiClient.on('message', (channel, tags, message, self) => {
