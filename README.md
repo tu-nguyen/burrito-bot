@@ -1,5 +1,5 @@
-# burrito-botS
-Simple bot for the burrito-guy discord server (https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive)to work for myself.
+# burrito-bot
+Simple bot for the burrito-guy discord server (https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
 
 ## Table of contents
 

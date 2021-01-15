@@ -27,6 +27,9 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 	if(message.toLowerCase() === '!hello') {
 		tmiClient.say(channel, `@${userstate.username}, heya!`);
 	}
+	else if(message.toLowerCase() === '!test') {
+		commandToDiscord(userstate, message);
+	}
 
 	checkForClips(channel, userstate, message)
 });
@@ -37,15 +40,20 @@ function checkForClips(channel, userstate, message){
 
 	if(isClip) {
 		tmiClient.say(channel, `clip detected`);
-
-		postToDiscord(userstate, message);
+		clipsToDiscord(userstate, message);
 	}
 }
 
-function postToDiscord(userstate, message){
+function clipsToDiscord(userstate, message){
 	//temp
 	// console.log('nani');
 	discordClient.emit('test', userstate, message);
+}
+
+function commandToDiscord(userstate, message){
+	//temp
+	// console.log('nani');
+	discordClient.emit('command', userstate, message);
 }
 
 const Discord = require('discord.js');
@@ -56,10 +64,10 @@ discordClient.once('ready', () => {
     console.log('burrito-guy is online!');
 });
 
-discordClient.on('test', (userstate, message) => {
-		// console.log(message);
-        discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' created a clip: ' + message);
-	})
-	
+discordClient.on('command', (userstate, message) => {
+	// console.log(message);
+    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message);
+})
+
 discordClient.login(DISCORD_TOKEN);
 
