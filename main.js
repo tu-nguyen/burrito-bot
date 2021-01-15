@@ -48,6 +48,11 @@ discordClient.on('command', (userstate, message) => {
     discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message);
 })
 
+discordClient.on('clip', (userstate, message) => {
+	// console.log(message);
+    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' posted a clip in chat: ' + message);
+})
+
 discordClient.login(DISCORD_TOKEN);
 
 // main functionailties
@@ -64,7 +69,7 @@ function checkForClips(channel, userstate, message){
 function clipsToDiscord(userstate, message){
 	//temp
 	// console.log('nani');
-	discordClient.emit('test', userstate, message);
+	discordClient.emit('clip', userstate, message);
 }
 
 function commandToDiscord(userstate, message){
