@@ -23,7 +23,7 @@ tmiClient.connect().catch(console.error);
 tmiClient.on('message', (channel, userstate, message, self) => {
     if(self) return;
     console.log(message);
-    console.log(tags);
+    console.log(userstate);
 	if(message.toLowerCase() === '!hello') {
 		tmiClient.say(channel, `@${userstate.username}, heya!`);
 	}
