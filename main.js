@@ -1,4 +1,5 @@
 require('dotenv').config();
+// init tmi.js
 const tmi = require('tmi.js');
 const tmiClient = new tmi.Client({
 	options: { debug: true, messagesLogLevel: "info" },
@@ -12,6 +13,10 @@ const tmiClient = new tmi.Client({
 	},
 	channels: ['jt1gaming', 'ascidgaming']
 });
+// init discord.js
+const Discord = require('discord.js');
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+const discordClient = new Discord.Client();
 
 // ripped from https://github.com/mangosango/clive
 // (twitch.tv\/.*\/clip) check https://www.twitch.tv/username/clip/clip_id
@@ -34,12 +39,24 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 	checkForClips(channel, userstate, message)
 });
 
+discordClient.once('ready', () => {
+    console.log('burrito-guy is online!');
+});
+
+discordClient.on('command', (userstate, message) => {
+	// console.log(message);
+    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message);
+})
+
+discordClient.login(DISCORD_TOKEN);
+
+// main functionailties
 function checkForClips(channel, userstate, message){
 	let isClip = false
 	isClip = CLIPS_REGEX.test(message);
 
 	if(isClip) {
-		tmiClient.say(channel, `clip detected`);
+		tmiClient.say(channel, `Clip detected, sent to #game-related on burrito-guy server`);
 		clipsToDiscord(userstate, message);
 	}
 }
@@ -55,19 +72,3 @@ function commandToDiscord(userstate, message){
 	// console.log('nani');
 	discordClient.emit('command', userstate, message);
 }
-
-const Discord = require('discord.js');
-const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-const discordClient = new Discord.Client();
-
-discordClient.once('ready', () => {
-    console.log('burrito-guy is online!');
-});
-
-discordClient.on('command', (userstate, message) => {
-	// console.log(message);
-    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message);
-})
-
-discordClient.login(DISCORD_TOKEN);
-
