@@ -28,38 +28,38 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 		tmiClient.say(channel, `@${userstate.username}, heya!`);
 	}
 
-	checkForClips(userstate, message)
-
+	checkForClips(channel, userstate, message)
 });
 
-function checkForClips(username, message){
+function checkForClips(channel, userstate, message){
 	let isClip = false
 	isClip = CLIPS_REGEX.test(message);
 
 	if(isClip) {
 		tmiClient.say(channel, `clip detected`);
+
+		postToDiscord(userstate, message);
 	}
-
 }
 
-function postToDiscord(){
-
+function postToDiscord(userstate, message){
+	//temp
+	// console.log('nani');
+	discordClient.emit('test', userstate, message);
 }
 
+const Discord = require('discord.js');
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+const discordClient = new Discord.Client();
 
+discordClient.once('ready', () => {
+    console.log('burrito-guy is online!');
+});
 
-// const Discord = require('discord.js');
-
-// const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-
-// const discordClient = new Discord.Client();
-
-
-// discordClient.once('ready', () => {
-//     console.log('burrito-guy is online!');
-// });
-
-
-
-// discordClient.login(DISCORD_TOKEN);
+discordClient.on('test', (userstate, message) => {
+		// console.log(message);
+        discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' created a clip: ' + message);
+	})
+	
+discordClient.login(DISCORD_TOKEN);
 
