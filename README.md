@@ -26,18 +26,18 @@ Wanted to have clips posted from twitch chat automatically be shared to a specif
 ## Installation
 
 1. Clone, and install
-'''bash
+```bash
 $ git clone https://github.com/tu-nguyen/burrito-bot.git && cd burrito-bot
 $ mv .env-example .env
 $ npm install
-'''
+```
 
 2. Add discord token, discord channel id, twitch username, and twitch password ([auth](https://twitchapps.com/tmi/)) in .env with a text editor.
 
 3. Run to test
-'''bash
+```bash
 $ node .
-'''
+```
 
 ## Example-Usage
 
