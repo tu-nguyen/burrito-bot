@@ -1,6 +1,9 @@
 # burrito-bot
 Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
 
+<img src="screenshots/example1.png" height="400" alt="Screenshot"/> <img src="screenshots/example1.png" height="400" alt="Screenshot"/> 
+<img src="screenshots/example2.png" height="400" alt="Screenshot"/> <img src="screenshots/example2.png" height="400" alt="Screenshot"/> 
+
 ## Table of Contents
 
 1. [About](#about)
@@ -46,7 +49,7 @@ SSH into your instance and run the above steps
 Control-Z to see the the job number (most likely will be 1)
 
 ```bash
-& bg %1
+$ bg %1
 $ exit
 ```
 
