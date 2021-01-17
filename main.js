@@ -69,8 +69,8 @@ discordClient.on('ayo', (channel_url, input) => {
 	} 
 })
 
-discordClient.on('clip', (userstate, message) => {
-    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' posted a clip in chat: ' + message);
+discordClient.on('clip', (channel, userstate, message) => {
+    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' posted a clip from ' + channel + '\'s chat: ' + message);
 })
 discordClient.login(DISCORD_TOKEN);
 
@@ -81,20 +81,6 @@ function checkForClips(channel, userstate, message){
 
 	if(isClip) {
 		tmiClient.say(channel, `Clip detected, sent to #game-related on burrito-guy server`);
-		clipsToDiscord(userstate, message);
+		discordClient.emit('clip', channel, userstate, message);
 	}
 }
-
-// function test(userstate, message){
-// 	//temp
-// 	// console.log('nani');
-// 	discordClient.emit('test', userstate, message);
-// }
-
-// function commandToDiscord(userstate, message){
-// 	discordClient.emit('ayo', userstate, message);
-// }
-
-// function clipsToDiscord(userstate, message){
-// 	discordClient.emit('clip', userstate, message);
-// }
