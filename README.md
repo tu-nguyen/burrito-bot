@@ -18,10 +18,10 @@ Wanted to have clips posted from twitch chat automatically be shared to a specif
 
 ## Prerequisites
 
-1. Node.js v12.0.0, Discord.js, and Tmi.js
-2. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
-3. Discord channel's ID **[Guide](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)**
-4. ([Twitch auth](https://twitchapps.com/tmi/))
+1. Node.js v12.0.0
+2. Twitch OAuth Token **[Twitch auth](https://twitchapps.com/tmi/)**
+3. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
+4. Discord channel's ID **[Guide](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)**
 
 ## Installation
 
@@ -46,6 +46,7 @@ $ node .
 - Relearn nodejs basics and clean up code
 - Filter out previously posted clips
 - When game changes, depending on game, post to discord and @ groups
+- Implement Twitch API calls for twitch clip titles
 
 ## Link
 
