@@ -1,8 +1,9 @@
 # burrito-bot
 Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
 
-<img src="screenshots/example1.png" height="400" alt="Screenshot"/> <img src="screenshots/example1.png" height="400" alt="Screenshot"/> 
-<img src="screenshots/example2.png" height="400" alt="Screenshot"/> <img src="screenshots/example2.png" height="400" alt="Screenshot"/> 
+<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example1.PNG" title="Clip Example" />
+
+<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example2.PNG" title="Game Example" />
 
 ## Table of Contents
 
