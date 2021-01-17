@@ -39,6 +39,17 @@ $ npm install
 $ node .
 ```
 
+4. (Optional) Deploy to server of your choice, example AWS as a background process
+
+SSH into your instance and run the above steps
+
+Control-Z to see the the job number (most likely will be 1)
+
+```bash
+& bg %1
+$ exit
+```
+
 ## Example-Usage
 
 ## TODO
