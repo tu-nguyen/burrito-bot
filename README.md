@@ -1,7 +1,7 @@
 # burrito-bot
 Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
 
-## Table of contents
+## Table of Contents
 
 1. [About](#about)
 2. [Prerequisites](#prerequisites)
@@ -43,14 +43,15 @@ $ node .
 
 ## TODO
 - ~~Make core functionality work aka twitch clips to discord channel~~
+- ~~When game changes, depending on game, post to discord and @ groups~~
 - Relearn nodejs basics and clean up code
-- Filter out previously posted clips
-- When game changes, depending on game, post to discord and @ groups
+- Filter out previously posted clips, probably implement a db
 - Implement Twitch API calls for twitch clip titles
+- Somehow get invite code from game? Hard maybe here
 
 ## Link
 
-- 
+- [CLive](https://github.com/mangosango/clive)
 
 ## Help
 
