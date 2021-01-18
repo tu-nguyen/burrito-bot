@@ -41,9 +41,11 @@ $ npm install
 2. Add discord token, discord channel id, twitch username, and twitch password/oauth in .env with a text editor.
 
 `TWITCH_USERNAME` Username of the Twitch bot account
+
 `TWITCH_PASSWORD` Password as in oauth for the Twitch account
 
 `DISCORD_TOKEN` Token from Discord Developer Portal for the bot
+
 `DISCORD_CHANNEL_ID` Channel ID for the channel bot will post to
 
 `DISCORD_ROLE_ID_OSU` Role ID for the builtin command to mention a specific role
