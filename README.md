@@ -1,8 +1,10 @@
 # burrito-bot
 Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
 
+When viewers post any clips on Twitch chat..
 <img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example1.PNG" title="Clip Example" />
 
+When command is sent on Twitch chat, "!ayo osu" for example below..
 <img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example2.PNG" title="Game Example" />
 
 ## Table of Contents
@@ -10,15 +12,14 @@ Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), 
 1. [About](#about)
 2. [Prerequisites](#prerequisites)
 3. [Installation](#installation)
-4. [Example Usage](#example-usage)
-5. [TODO](#todo)
-6. [Links](#links)
-7. [Help](#help)
+4. [TODO](#todo)
+5. [Links](#links)
+6. [Help](#help)
 
 ## About
 Made using [nodejs](https://nodejs.org/en/), [tmi.js](https://github.com/tmijs), and [discord.js](https://github.com/discordjs/discord.js/)
 
-Wanted to have clips posted from twitch chat automatically be shared to a specific channel on discord, this is the main purpose of starting this project, but I will add some small commands and share publically here. Privately I will have commands tailored torwards the twitch/discord.
+Wanted to have clips posted from twitch chat automatically be shared to a specific channel on discord, this is the main purpose of starting this project, but I will add some small commands and share publically here. Privately I will have commands tailored towards the twitch/discord.
 
 ## Prerequisites
 
@@ -54,20 +55,18 @@ $ bg %1
 $ exit
 ```
 
-## Example-Usage
-
 ## TODO
 - ~~Make core functionality work aka twitch clips to discord channel~~
 - ~~When game changes, depending on game, post to discord and @ groups~~
-- Relearn nodejs basics and clean up code
+- Relearn nodejs basics and clean up code lol
 - Filter out previously posted clips, probably implement a db
 - Implement Twitch API calls for twitch clip titles
 - Somehow get invite code from game? Hard maybe here
 
-## Link
+## Links
 
-- [CLive](https://github.com/mangosango/clive)
+- [CLive](https://github.com/mangosango/clive) Better version that I couldn't get working cause I'm new to js.. 
 
 ## Help
 
-- [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh)
+- I'm almost always on here, ask for Tu: [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh)
