@@ -35,11 +35,21 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 	} else if (message.toLowerCase() === '!test') {
 		discordClient.emit('test', userstate, message);
 	} else if (message.startsWith('!ayo')) {
-		if(message.tags.mod == '1') {
+		if (userstate.badges.moderator != '1') {
+			console.log("Not a mod!")
 			return;
+		} else {
+			console.log("A mod!")
+			var input = message.split(' ')[1];
+			if (input === undefined || input === null) {
+				tmiClient.say(channel, `[osu, valorant, league, among us, apex, cod, rust, fall guys]`);
+				return;
+			} else {
+				discordClient.emit('ayo', channel, channel_url, input);
+			}
+			
 		}
-		var input = message.split(' ')[1];
-		discordClient.emit('ayo', channel_url, input);
+		console.log("Not a mod!")
 	}
 	checkForClips(channel, userstate, message)
 });
@@ -52,7 +62,7 @@ discordClient.on('test', (userstate, message) => {
     discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message);
 })
 
-discordClient.on('ayo', (channel_url, input) => {
+discordClient.on('ayo', (channel, channel_url, input) => {
 	if (input.toLowerCase() === 'osu') {
 		discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(channel_url + ' is about to play <@&' + process.env.DISCORD_ROLE_ID_OSU + '> come thru!');
 	} else if (input.toLowerCase() === 'valorant') {
