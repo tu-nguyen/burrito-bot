@@ -1,12 +1,6 @@
 # burrito-bot
 Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
 
-When viewers post any clips on Twitch chat..
-<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example1.PNG" title="Clip Example" />
-
-When command is sent on Twitch chat, "!ayo osu" for example below..
-<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example2.PNG" title="Game Example" />
-
 ## Table of Contents
 
 1. [About](#about)
@@ -21,9 +15,16 @@ Made using [nodejs](https://nodejs.org/en/), [tmi.js](https://github.com/tmijs),
 
 Wanted to have clips posted from twitch chat automatically be shared to a specific channel on discord, this is the main purpose of starting this project, but I will add some small commands and share publically here. Privately I will have commands tailored towards the twitch/discord.
 
+
+When viewers post any clips on Twitch chat..
+<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example1.PNG" title="Clip Example" />
+
+When command is sent on Twitch chat, "!ayo osu" for example below..
+<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example2.PNG" title="Game Example" />
+
 ## Prerequisites
 
-1. Node.js v12.0.0
+1. Node.js v12.0.0 **[Guide](https://nodejs.org/en/download/)**
 2. Twitch OAuth Token **[Twitch auth](https://twitchapps.com/tmi/)**
 3. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
 4. Discord channel's ID **[Guide](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)**
@@ -38,6 +39,14 @@ $ npm install
 ```
 
 2. Add discord token, discord channel id, twitch username, and twitch password/oauth in .env with a text editor.
+
+`TWITCH_USERNAME` Username of the Twitch bot account
+`TWITCH_PASSWORD` Password as in oauth for the Twitch account
+
+`DISCORD_TOKEN` Token from Discord Developer Portal for the bot
+`DISCORD_CHANNEL_ID` Channel ID for the channel bot will post to
+
+`DISCORD_ROLE_ID_OSU` Role ID for the builtin command to mention a specific role
 
 3. Run to test
 ```bash
