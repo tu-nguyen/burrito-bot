@@ -37,7 +37,7 @@ $ mv .env-example .env
 $ npm install
 ```
 
-2. Add discord token, discord channel id, twitch username, and twitch password ([auth](https://twitchapps.com/tmi/)) in .env with a text editor.
+2. Add discord token, discord channel id, twitch username, and twitch password/oauth in .env with a text editor.
 
 3. Run to test
 ```bash
