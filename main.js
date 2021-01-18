@@ -27,14 +27,17 @@ const discordClient = new Discord.Client();
 tmiClient.connect().catch(console.error);
 
 tmiClient.on('message', (channel, userstate, message, self) => {
-	if(self) return;
+	if (self) return;
 	var channel_url = 'https://www.twitch.tv/' + channel.replace(/[^0-9A-Z]+/gi,"");
 	console.log(userstate);
-	if(message.toLowerCase() === '!hello') {
+	if (message.toLowerCase() === '!hello') {
 		tmiClient.say(channel, `@${userstate.username}, heya!`);
-	} else if(message.toLowerCase() === '!test') {
+	} else if (message.toLowerCase() === '!test') {
 		discordClient.emit('test', userstate, message);
 	} else if (message.startsWith('!ayo')) {
+		if(message.tags.mod == '1') {
+			return;
+		}
 		var input = message.split(' ')[1];
 		discordClient.emit('ayo', channel_url, input);
 	}
@@ -50,7 +53,7 @@ discordClient.on('test', (userstate, message) => {
 })
 
 discordClient.on('ayo', (channel_url, input) => {
-	if(input.toLowerCase() === 'osu') {
+	if (input.toLowerCase() === 'osu') {
 		discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(channel_url + ' is about to play <@&' + process.env.DISCORD_ROLE_ID_OSU + '> come thru!');
 	} else if (input.toLowerCase() === 'valorant') {
 		discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(channel_url + ' is about to play <@&' + process.env.DISCORD_ROLE_ID_VALORANT + '> come thru!');
@@ -66,7 +69,9 @@ discordClient.on('ayo', (channel_url, input) => {
 		discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(channel_url + ' is about to play <@&' + process.env.DISCORD_ROLE_ID_RUST + '> come thru!');
 	} else if (input.toLowerCase() === 'fall') {
 		discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(channel_url + ' is about to play <@&' + process.env.DISCORD_ROLE_ID_FALL_GUYS + '> come thru!');
-	} 
+	} else {
+		tmiClient.say(channel, `[osu, valorant, league, among us, apex, cod, rust, fall guys]`);
+	}
 })
 
 discordClient.on('clip', (channel, userstate, message) => {
@@ -79,7 +84,7 @@ function checkForClips(channel, userstate, message){
 	let isClip = false
 	isClip = CLIPS_REGEX.test(message);
 
-	if(isClip) {
+	if (isClip) {
 		tmiClient.say(channel, `Clip detected, sent to #game-related on burrito-guy server`);
 		discordClient.emit('clip', channel, userstate, message);
 	}
