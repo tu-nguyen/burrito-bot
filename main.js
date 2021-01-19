@@ -19,6 +19,7 @@ const tmiClient = new tmi.Client({
 	},
 	channels: ['jt1gaming', 'ascidgaming']
 });
+
 // init discord.js
 const Discord = require('discord.js');
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
@@ -32,14 +33,14 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 	console.log(userstate);
 	if (message.toLowerCase() === '!hello') {
 		tmiClient.say(channel, `@${userstate.username}, heya!`);
+	} else if (message.toLowerCase() === '!setgame') {
+		tmiClient.say(channel, `@${userstate.username}, ayo command or nah?`);
 	} else if (message.toLowerCase() === '!test') {
 		discordClient.emit('test', userstate, message);
 	} else if (message.startsWith('!ayo')) {
 		if (userstate.badges.moderator != '1') {
-			console.log("Not a mod!")
-			return;
+			tmiClient.say(channel, `@${userstate.username}, ayo command can only be executed by mods`);
 		} else {
-			console.log("A mod!")
 			var input = message.split(' ')[1];
 			if (input === undefined || input === null) {
 				tmiClient.say(channel, `[osu, valorant, league, among us, apex, cod, rust, fall guys]`);
@@ -47,9 +48,7 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 			} else {
 				discordClient.emit('ayo', channel, channel_url, input);
 			}
-			
 		}
-		console.log("Not a mod!")
 	}
 	checkForClips(channel, userstate, message)
 });
