@@ -38,9 +38,7 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 	} else if (message.toLowerCase() === '!test') {
 		discordClient.emit('test', userstate, message);
 	} else if (message.startsWith('!ayo')) {
-		if (userstate.badges.moderator != '1') {
-			tmiClient.say(channel, `@${userstate.username}, ayo command can only be executed by mods`);
-		} else {
+		if (userstate.badges.moderator == '1' || userstate.badges.broadcaster == '1') {
 			var input = message.split(' ')[1];
 			if (input === undefined || input === null) {
 				tmiClient.say(channel, `[osu, valorant, league, among us, apex, cod, rust, fall guys]`);
@@ -48,7 +46,9 @@ tmiClient.on('message', (channel, userstate, message, self) => {
 			} else {
 				discordClient.emit('ayo', channel, channel_url, input);
 			}
-		}
+		} else {
+			tmiClient.say(channel, `@${userstate.username}, ayo command can only be executed by mods`);
+			}
 	}
 	checkForClips(channel, userstate, message)
 });
