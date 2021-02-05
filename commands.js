@@ -23,7 +23,7 @@ let call = (channel, userstate, message) => {
             }
         } else {
             tmiClient.say(channel, `@${userstate.username}, ayo command can only be executed by mods`);
-            }
+        }
     }
 }
 

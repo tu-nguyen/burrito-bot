@@ -69,7 +69,7 @@ $ exit
 ## TODO
 - ~~Make core functionality work aka twitch clips to discord channel~~
 - ~~When game changes, depending on game, post to discord and @ groups~~
-- Relearn nodejs basics and clean up code lol
+- ~~Relearn nodejs basics and clean up code lol~~
 - Filter out previously posted clips, probably implement a db
 - Implement Twitch API calls for twitch clip titles
 - Somehow get invite code from game? Hard maybe here
