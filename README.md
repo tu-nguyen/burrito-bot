@@ -1,5 +1,5 @@
 # burrito-bot
-Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), mainly because at first I struggled to get [CLive](https://github.com/mangosango/clive) to work for myself.
+Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh).
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ Simple bot for the [Burrito-Guy discord server](https://discord.gg/zWHqYfEnwh), 
 ## About
 Made using [nodejs](https://nodejs.org/en/), [tmi.js](https://github.com/tmijs), and [discord.js](https://github.com/discordjs/discord.js/)
 
-Wanted to have clips posted from twitch chat automatically be shared to a specific channel on discord, this is the main purpose of starting this project, but I will add some small commands and share publically here. Privately I will have commands tailored towards the twitch/discord.
+Wanted to have clips posted from twitch chat automatically be shared to a specific channel on discord, this is the main purpose of starting this project, but I will add some small commands and share publically here. Privately I will have commands tailored towards the twitch/discord. Regex for clips from [CLive](https://github.com/mangosango/clive).
 
 
 When viewers post any clips on Twitch chat..
