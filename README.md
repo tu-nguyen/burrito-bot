@@ -42,9 +42,9 @@ $ npm install
 
 `TWITCH_USERNAME` Username of the Twitch bot account
 
-`TWITCH_PASSWORD` Password as in oauth for the Twitch account
+`TWITCH_PASSWORD` Password as in oauth for the Twitch account ("oauth:" not included)
 
-`DISCORD_TOKEN` Token from Discord Developer Portal for the bot
+`DISCORD_TOKEN` Token from Discord Developer Portal for the bot (Under the Bot tab NOT OAuth2)
 
 `DISCORD_CHANNEL_ID` Channel ID for the channel bot will post to
 
