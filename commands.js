@@ -2,7 +2,7 @@ const { tmi, discord} = require('./clients.js');
 const tmiClient = tmi;
 const discordClient = discord;
 
-//tmi commands
+// Commands from Twitch chat
 let call = (channel, userstate, message) => {
     var channel_url = 'https://www.twitch.tv/' + channel.replace(/[^0-9A-Z]+/gi,"");
 
@@ -11,7 +11,7 @@ let call = (channel, userstate, message) => {
     } else if (message.toLowerCase().startsWith() === '!setgame') {
         tmiClient.say(channel, `@${userstate.username}, ayo command or nah?`);
     } else if (message.toLowerCase() === '!test') {
-        discordClient.emit('test', userstate, message);
+        discordClient.emit('test', userstate, message, channel);
     } 
     // else if (message.toLowerCase().startsWith('!ayo')) {
     //     if ((userstate.badges.moderator == '1' || userstate.badges.broadcaster == '1') && userstate.username != 'streamlabs') {
@@ -28,14 +28,54 @@ let call = (channel, userstate, message) => {
     // }
 }
 
-//discord action
+// Discord actions and commands from discord channel
 discordClient.once('ready', () => {
     console.log('burrito-guy bot is online!');
 });
 
-discordClient.on('test', (userstate, message) => {
-    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message);
+discordClient.on('test', (userstate, message, channel) => {
+    // channel_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).name
+    // server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
+    discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message + ' from ' + channel);
+    
 })
+
+// Commands from main channel provided in env
+discordClient.on('message', msg => {
+    if (msg.author.bot) return; // Ignore all bots
+
+    if (msg.content.startsWith("!" + "test")) {
+        parts = msg.content.split(" ");
+        
+
+        if (parts.length == 1) {
+            msg.reply("No twitch channel provided but this is indeed a test!")
+        } else if (parts.length == 2) {
+            if (parts[1].startsWith("#")) {
+                channel = parts[1]
+            } else {
+                channel = "#" + parts[1]
+            }
+            server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
+            tmiClient.say(channel, msg.author.username + " sent a test from " + server_name);
+        } else {
+            if (parts[1].startsWith("#")) {
+                channel = parts[1]
+            } else {
+                channel = "#" + parts[1]
+            }
+            message = parts.splice(0, 2)
+            console.log(message)
+            tmiClient.say(channel, msg.content);
+        }
+    }
+ 
+    if (msg.content.startsWith("!" + "ping")) { // When a player does '!ping'
+      msg.reply("Pong!") // The bot will say @Author, Pong!
+    }
+
+
+ });
 
 // discordClient.on('ayo', (channel, channel_url, input) => {
 // 	if (input.toLowerCase() === 'osu') {
