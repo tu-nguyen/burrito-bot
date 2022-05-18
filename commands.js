@@ -2,14 +2,20 @@ const { tmi, discord} = require('./clients.js');
 const tmiClient = tmi;
 const discordClient = discord;
 
-// Commands from Twitch chat
+// Use discordClient.emit('example', userstate, message, etc) to post/perform actions to DISCORD_CHANNEL_ID
+//      'example' here will be the name of the event, and the event action must be create, see CUSTOM EVENT below
+//      discordClient.on('example', (userstate, message, channel) => { some action or message here }
+// Use tmiClient.say(channel, 'example of something to say') to post to channel
+
+// Commands and actions from Twitch chat
+// Bot will always read from the TWITCH_CHANNEL in .env
 let call = (channel, userstate, message) => {
     var channel_url = 'https://www.twitch.tv/' + channel.replace(/[^0-9A-Z]+/gi,"");
 
     if (message.toLowerCase() === '!hello') {
         tmiClient.say(channel, `@${userstate.username}, heya!`);
     } else if (message.toLowerCase().startsWith() === '!setgame') {
-        tmiClient.say(channel, `@${userstate.username}, ayo command or nah?`);
+        DISCORD_CHANNEL_ID.say(channel, `@${userstate.username}, ayo command or nah?`);
     } else if (message.toLowerCase() === '!test') {
         discordClient.emit('test', userstate, message, channel);
     } 
@@ -28,66 +34,29 @@ let call = (channel, userstate, message) => {
     // }
 }
 
-// Discord actions and commands from discord channel
-discordClient.once('ready', () => {
-    console.log('burrito-guy bot is online!');
-});
-
+// CUSTOM EVENTS triggered by the call function above
+// call function above reads from twitch chat and any that is meant to trigger an event on discord happens here
+// add as many as you'd like here, below is a test example: sending "!test" in Twitch chat will have the bot send a test message to DISCORD_CHANNEL_ID
 discordClient.on('test', (userstate, message, channel) => {
-    // channel_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).name
-    // server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
     discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' sent test command: ' + message + ' from ' + channel);
     
 })
 
-// Commands from main channel provided in env
+// Commands and actions from Discord
+// Bot will always read from main DISCORD_CHANNEL_ID assigned on .env
+// msg will be what the user sends on the main channel
+// to have it send to Twitch chat use tmiClient.say(channel, "example message")
 discordClient.on('message', msg => {
+    server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
+    channel = process.env.TWITCH_CHANNEL
     if (msg.author.bot) return; // Ignore all bots
-
-    if (msg.content.startsWith("!" + "test")) {
-        parts = msg.content.split(" ");
-        
-
-        if (parts.length == 1) {
-            msg.reply("No twitch channel provided but this is indeed a test!")
-        } else {
-            if (parts[1].startsWith("#")) {
-                channel = parts[1]
-            } else {
-                channel = "#" + parts[1]
-            }
-            server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
-
-            if (parts.length == 2) {
-                if (parts[1].startsWith("#")) {
-                    channel = parts[1]
-                } else {
-                    channel = "#" + parts[1]
-                }
-                server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
-                tmiClient.say(channel, msg.author.username + " sent a test from " + server_name);
-            } else {
-                if (parts[1].startsWith("#")) {
-                    channel = parts[1]
-                } else {
-                    channel = "#" + parts[1]
-                }
-                message = parts.splice(0, 2)
-                console.log(message)
-                tmiClient.say(channel, msg.content);
-            }
-        }
-        
-        
-        
-        
+    if (msg.content == "!test") {
+        // when user sends "!test" from DISCORD_CHANNEL_ID, this will trigger the bot to post in Twitch chat
+        tmiClient.say(channel, msg.author.username + " sent a test from " + server_name);
     }
- 
     if (msg.content.startsWith("!" + "ping")) { // When a player does '!ping'
       msg.reply("Pong!") // The bot will say @Author, Pong!
     }
-
-
  });
 
 // discordClient.on('ayo', (channel, channel_url, input) => {
@@ -112,6 +81,11 @@ discordClient.on('message', msg => {
 // 	}
 // })
 
+discordClient.once('ready', () => {
+    console.log('burrito-guy bot is online!');
+});
+
+// Function that posts any twitch clip from DISCORD_CHANNEL_ID to TWITCH_CHANNEL
 discordClient.on('clip', (channel, userstate, message) => {
     discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).send(userstate.username + ' posted a clip from ' + channel + '\'s chat: ' + message);
 })

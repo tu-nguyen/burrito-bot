@@ -1,29 +1,31 @@
 require('dotenv').config();
 const request = require('request');
-const { tmi, discord} = require('./clients.js');
+const {tmi, discord} = require('./clients.js');
+const commands = require('./commands.js')
 const tmiClient = tmi;
 const discordClient = discord;
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-const commands = require('./commands.js')
+const PREFIX = process.env.PREFIX;
 const CLIPS_REGEX = /(twitch.tv\/.*\/clip)|(clips.twitch.tv)\/\w+/i;
+
 tmiClient.connect().catch(console.error);
 
-// command handler
+// Command handler for Twitch Chat
 tmiClient.on('message', (channel, userstate, message, self) => {
 	if (self) return;
 
-	// commands
-	if ((message.indexOf('!')) !== -1) {
+	// Will only reconize command if message starts with the prefix !
+	if ((message.indexOf(PREFIX)) !== -1) {
 		commands.call(channel, userstate, message);
 	}
 
 	checkForClips(channel, userstate, message)
 });
 
-// discord bot login
+// Discord bot login
 discordClient.login(DISCORD_TOKEN);
 
-// main functionailties - clip detection
+// Clip detection
 function checkForClips(channel, userstate, message){
 	let isClip = false;
 	isClip = CLIPS_REGEX.test(message);

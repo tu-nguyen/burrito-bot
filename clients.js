@@ -12,7 +12,7 @@ let tmiClient = new tmi.client({
         username: process.env.TWITCH_USERNAME,
         password: process.env.TWITCH_PASSWORD
     },
-    channels: ['jt1gaming', 'ProjectEddy_']
+    channels: [process.env.TWITCH_CHANNEL]
 });
 let discordClient = new Discord.Client();
 
