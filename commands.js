@@ -50,24 +50,37 @@ discordClient.on('message', msg => {
 
         if (parts.length == 1) {
             msg.reply("No twitch channel provided but this is indeed a test!")
-        } else if (parts.length == 2) {
-            if (parts[1].startsWith("#")) {
-                channel = parts[1]
-            } else {
-                channel = "#" + parts[1]
-            }
-            server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
-            tmiClient.say(channel, msg.author.username + " sent a test from " + server_name);
         } else {
             if (parts[1].startsWith("#")) {
                 channel = parts[1]
             } else {
                 channel = "#" + parts[1]
             }
-            message = parts.splice(0, 2)
-            console.log(message)
-            tmiClient.say(channel, msg.content);
+            server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
+
+            if (parts.length == 2) {
+                if (parts[1].startsWith("#")) {
+                    channel = parts[1]
+                } else {
+                    channel = "#" + parts[1]
+                }
+                server_name = discordClient.channels.cache.get(process.env.DISCORD_CHANNEL_ID).guild.name
+                tmiClient.say(channel, msg.author.username + " sent a test from " + server_name);
+            } else {
+                if (parts[1].startsWith("#")) {
+                    channel = parts[1]
+                } else {
+                    channel = "#" + parts[1]
+                }
+                message = parts.splice(0, 2)
+                console.log(message)
+                tmiClient.say(channel, msg.content);
+            }
         }
+        
+        
+        
+        
     }
  
     if (msg.content.startsWith("!" + "ping")) { // When a player does '!ping'
