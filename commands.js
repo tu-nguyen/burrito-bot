@@ -18,7 +18,10 @@ let call = (channel, userstate, message) => {
         DISCORD_CHANNEL_ID.say(channel, `@${userstate.username}, ayo command or nah?`);
     } else if (message.toLowerCase() === '!test') {
         discordClient.emit('test', userstate, message, channel);
-    } 
+    } else if (message.toLowerCase() === 'happy birthday'){
+        tmiClient.say(channel, 'Thank you!')
+    }
+
     // else if (message.toLowerCase().startsWith('!ayo')) {
     //     if ((userstate.badges.moderator == '1' || userstate.badges.broadcaster == '1') && userstate.username != 'streamlabs') {
     //         var input = message.split(' ')[1];
