@@ -19,9 +19,6 @@ Wanted to have clips posted from twitch chat automatically be shared to a specif
 When viewers post any clips on Twitch chat..
 <img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example1.PNG" title="Clip Example" />
 
-When command is sent on Twitch chat, "!ayo osu" for example below..
-<img src="https://raw.githubusercontent.com/tu-nguyen/burrito-bot/main/screenshots/example2.PNG" title="Game Example" />
-
 ## Prerequisites
 
 1. Node.js v12.0.0 **[Guide](https://nodejs.org/en/download/)**
